@@ -57,15 +57,19 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    prompt_color='\[\033[;32m\]'
-    info_color='\[\033[1;34m\]'
-    prompt_symbol=📛
+    prompt_color='\[\033[;31m\]'
+    info_color='\[\033[1;39m\]'
+    host_color='\[\033[1;96m\]'
+    prompt_symbol_color='\[\033[1;33m\]'
+    prompt_symbol=@
     if [ "$EUID" -eq 0 ]; then # Change prompt colors for root user
-	prompt_color='\[\033[;94m\]'
+	prompt_color='\[\033[;31m\]'
 	info_color='\[\033[1;31m\]'
+	host_color='\[\033[1;96m\]'
+        prompt_symbol_color='\[\033[1;33m\]'
 	prompt_symbol=💀
     fi
-    PS1=$prompt_color'┌──${debian_chroot:+($debian_chroot)──}('$info_color'\u${prompt_symbol}\h'$prompt_color')-[\[\033[0;1m\]\w'$prompt_color']\n'$prompt_color'└─'$info_color'\$\[\033[0m\] '
+    PS1=$prompt_color'┌──${debian_chroot:+($debian_chroot)──}['$info_color'\u'$prompt_symbol_color'${prompt_symbol}'$host_color'\h'$prompt_color']-[\[\033[0;32m\]\w'$prompt_color']\n'$prompt_color'└─'$prompt_symbol_color'\$\[\033[0m\] '
     # BackTrack red prompt
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
@@ -108,7 +112,7 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -l'
+alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -CF'
 
