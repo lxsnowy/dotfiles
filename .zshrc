@@ -94,7 +94,7 @@ fi
 configure_prompt() {
     prompt_symbol=@
     # Skull emoji for root terminal
-    #[ "$EUID" -eq 0 ] && prompt_symbol=💀
+    [ "$EUID" -eq 0 ] && prompt_symbol=💀
     case "$PROMPT_ALTERNATIVE" in
         twoline)
             PROMPT=$'%F{red}┌──${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}[%F{%(#.red.default)}%n%F{yellow}'$prompt_symbol$'%F{cyan}%m%F{red}]-[%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{red}]\n└─%(#.%F{red}#.%F{yellow}$)%b%F{reset} '
